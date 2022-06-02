@@ -6,7 +6,9 @@ import 'package:hanafi_inn/domain/country/i_country_repository.dart';
 import 'package:hanafi_inn/domain/holiday/holiday.dart';
 import 'package:hanafi_inn/infrastructure/dto.dart';
 import 'package:http/http.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: ICountryRepository)
 class CountryRepository extends ICountryRepository {
   @override
   Future<Either<String, List<Country>>> getCountrysList() async {
