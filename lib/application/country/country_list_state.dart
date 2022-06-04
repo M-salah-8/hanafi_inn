@@ -4,7 +4,7 @@ part of 'country_list_bloc.dart';
 class CountryListState with _$CountryListState {
   const factory CountryListState.initial() = _Initial;
   const factory CountryListState.loading() = _Loading;
-  const factory CountryListState.loadSuccess(List<Country> countries) =
+  const factory CountryListState.loadSuccess(List<CountryPrimitive> countries) =
       _LoadSuccess;
   const factory CountryListState.loadFailure() = _LoadFailure;
 }

@@ -171,7 +171,7 @@ mixin _$CountryListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loadSuccess,
+    required TResult Function(List<CountryPrimitive> countries) loadSuccess,
     required TResult Function() loadFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -179,7 +179,7 @@ mixin _$CountryListState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -187,7 +187,7 @@ mixin _$CountryListState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) =>
@@ -278,7 +278,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loadSuccess,
+    required TResult Function(List<CountryPrimitive> countries) loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return initial();
@@ -289,7 +289,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return initial?.call();
@@ -300,7 +300,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
@@ -394,7 +394,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loadSuccess,
+    required TResult Function(List<CountryPrimitive> countries) loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return loading();
@@ -405,7 +405,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return loading?.call();
@@ -416,7 +416,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
@@ -473,7 +473,7 @@ abstract class _$$_LoadSuccessCopyWith<$Res> {
   factory _$$_LoadSuccessCopyWith(
           _$_LoadSuccess value, $Res Function(_$_LoadSuccess) then) =
       __$$_LoadSuccessCopyWithImpl<$Res>;
-  $Res call({List<Country> countries});
+  $Res call({List<CountryPrimitive> countries});
 }
 
 /// @nodoc
@@ -495,7 +495,7 @@ class __$$_LoadSuccessCopyWithImpl<$Res>
       countries == freezed
           ? _value._countries
           : countries // ignore: cast_nullable_to_non_nullable
-              as List<Country>,
+              as List<CountryPrimitive>,
     ));
   }
 }
@@ -503,11 +503,12 @@ class __$$_LoadSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadSuccess implements _LoadSuccess {
-  const _$_LoadSuccess(final List<Country> countries) : _countries = countries;
+  const _$_LoadSuccess(final List<CountryPrimitive> countries)
+      : _countries = countries;
 
-  final List<Country> _countries;
+  final List<CountryPrimitive> _countries;
   @override
-  List<Country> get countries {
+  List<CountryPrimitive> get countries {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_countries);
   }
@@ -540,7 +541,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loadSuccess,
+    required TResult Function(List<CountryPrimitive> countries) loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return loadSuccess(countries);
@@ -551,7 +552,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return loadSuccess?.call(countries);
@@ -562,7 +563,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
@@ -611,9 +612,10 @@ class _$_LoadSuccess implements _LoadSuccess {
 }
 
 abstract class _LoadSuccess implements CountryListState {
-  const factory _LoadSuccess(final List<Country> countries) = _$_LoadSuccess;
+  const factory _LoadSuccess(final List<CountryPrimitive> countries) =
+      _$_LoadSuccess;
 
-  List<Country> get countries => throw _privateConstructorUsedError;
+  List<CountryPrimitive> get countries => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$_LoadSuccessCopyWith<_$_LoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -662,7 +664,7 @@ class _$_LoadFailure implements _LoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Country> countries) loadSuccess,
+    required TResult Function(List<CountryPrimitive> countries) loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return loadFailure();
@@ -673,7 +675,7 @@ class _$_LoadFailure implements _LoadFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return loadFailure?.call();
@@ -684,7 +686,7 @@ class _$_LoadFailure implements _LoadFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Country> countries)? loadSuccess,
+    TResult Function(List<CountryPrimitive> countries)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {

@@ -223,7 +223,7 @@ mixin _$HolidayListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Holiday> holidays) loadSuccess,
+    required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
     required TResult Function() loadFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -231,7 +231,7 @@ mixin _$HolidayListState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -239,7 +239,7 @@ mixin _$HolidayListState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) =>
@@ -330,7 +330,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Holiday> holidays) loadSuccess,
+    required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return initial();
@@ -341,7 +341,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return initial?.call();
@@ -352,7 +352,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
@@ -446,7 +446,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Holiday> holidays) loadSuccess,
+    required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return loading();
@@ -457,7 +457,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return loading?.call();
@@ -468,7 +468,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
@@ -525,7 +525,7 @@ abstract class _$$_LoadSuccessCopyWith<$Res> {
   factory _$$_LoadSuccessCopyWith(
           _$_LoadSuccess value, $Res Function(_$_LoadSuccess) then) =
       __$$_LoadSuccessCopyWithImpl<$Res>;
-  $Res call({List<Holiday> holidays});
+  $Res call({List<HolidayPrimitive> holidays});
 }
 
 /// @nodoc
@@ -547,7 +547,7 @@ class __$$_LoadSuccessCopyWithImpl<$Res>
       holidays == freezed
           ? _value._holidays
           : holidays // ignore: cast_nullable_to_non_nullable
-              as List<Holiday>,
+              as List<HolidayPrimitive>,
     ));
   }
 }
@@ -555,11 +555,12 @@ class __$$_LoadSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadSuccess implements _LoadSuccess {
-  const _$_LoadSuccess(final List<Holiday> holidays) : _holidays = holidays;
+  const _$_LoadSuccess(final List<HolidayPrimitive> holidays)
+      : _holidays = holidays;
 
-  final List<Holiday> _holidays;
+  final List<HolidayPrimitive> _holidays;
   @override
-  List<Holiday> get holidays {
+  List<HolidayPrimitive> get holidays {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_holidays);
   }
@@ -591,7 +592,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Holiday> holidays) loadSuccess,
+    required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return loadSuccess(holidays);
@@ -602,7 +603,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return loadSuccess?.call(holidays);
@@ -613,7 +614,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
@@ -662,9 +663,10 @@ class _$_LoadSuccess implements _LoadSuccess {
 }
 
 abstract class _LoadSuccess implements HolidayListState {
-  const factory _LoadSuccess(final List<Holiday> holidays) = _$_LoadSuccess;
+  const factory _LoadSuccess(final List<HolidayPrimitive> holidays) =
+      _$_LoadSuccess;
 
-  List<Holiday> get holidays => throw _privateConstructorUsedError;
+  List<HolidayPrimitive> get holidays => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$$_LoadSuccessCopyWith<_$_LoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -713,7 +715,7 @@ class _$_LoadFailure implements _LoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Holiday> holidays) loadSuccess,
+    required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
     required TResult Function() loadFailure,
   }) {
     return loadFailure();
@@ -724,7 +726,7 @@ class _$_LoadFailure implements _LoadFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
   }) {
     return loadFailure?.call();
@@ -735,7 +737,7 @@ class _$_LoadFailure implements _LoadFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Holiday> holidays)? loadSuccess,
+    TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
     TResult Function()? loadFailure,
     required TResult orElse(),
   }) {
