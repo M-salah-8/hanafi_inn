@@ -5,34 +5,47 @@ import 'package:hanafi_inn/presentation/core/constants.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class EmojiAnimation extends StatelessWidget {
-  const EmojiAnimation(this.emoji, {Key? key}) : super(key: key);
+  const EmojiAnimation(
+    this.emoji,
+    this.x,
+    this.y, {
+    Key? key,
+  }) : super(key: key);
   final String emoji;
+  final double x;
+  final double y;
 
   @override
   Widget build(BuildContext context) {
-    final TimelineTween<AnimationTween> _tween = TimelineTween<AnimationTween>()
+    final TimelineTween<AniProps> _tween = TimelineTween<AniProps>()
       ..addScene(
               begin: const Duration(seconds: 1),
               end: const Duration(seconds: 2))
-          .animate(AnimationTween.size,
-              tween: Tween<double>(begin: 10.0, end: 20.0))
+          .animate(AniProps.size, tween: Tween<double>(begin: 10.0, end: 20.0))
       ..addScene(
               begin: const Duration(seconds: 0),
               end: const Duration(seconds: 3))
-          .animate(AnimationTween.rotation,
-              tween: Tween<double>(begin: 0.0, end: 360.0));
-    return CustomAnimation<TimelineValue<AnimationTween>>(
+          .animate(AniProps.rotation,
+              tween: Tween<double>(begin: 0.0, end: 360.0))
+      ..addScene(
+              begin: const Duration(seconds: 0),
+              end: const Duration(seconds: 3))
+          .animate(AniProps.move, tween: Tween<double>(begin: x, end: x + 0.1));
+    return CustomAnimation<TimelineValue<AniProps>>(
       control: CustomAnimationControl.mirror,
       tween: _tween,
       duration: const Duration(seconds: 2),
       delay: const Duration(seconds: 1),
       // curve: Curves.easeInOut,
       builder: (context, child, value) {
-        return RotationTransition(
-            turns: AlwaysStoppedAnimation(
-                value.get(AnimationTween.rotation) / 360.0),
-            child: Text(emoji,
-                style: TextStyle(fontSize: value.get(AnimationTween.size))));
+        return Align(
+          alignment: Alignment(value.get(AniProps.move), y),
+          child: RotationTransition(
+              turns:
+                  AlwaysStoppedAnimation(value.get(AniProps.rotation) / 360.0),
+              child: Text(emoji,
+                  style: TextStyle(fontSize: value.get(AniProps.size)))),
+        );
       },
     );
   }
@@ -75,4 +88,4 @@ class SearchAnimation extends HookWidget {
   }
 }
 
-enum AnimationTween { size, rotation }
+enum AniProps { size, rotation, move }

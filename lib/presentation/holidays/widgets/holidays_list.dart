@@ -8,7 +8,6 @@ class HolidaysList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final displayMedium = Theme.of(context).textTheme.displayMedium;
     return ListView.builder(
       itemCount: holidays.length,
       itemBuilder: (context, index) {
@@ -16,11 +15,8 @@ class HolidaysList extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: size.width * 0.05, vertical: size.height * 0.01),
           child: CustomCard(
-            child: Text(
-              holidays[index].name,
-              style: displayMedium,
-              textAlign: TextAlign.center,
-            ),
+            date: holidays[index].date.substring(5),
+            name: holidays[index].name,
           ),
         );
       },

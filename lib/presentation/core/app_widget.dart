@@ -50,7 +50,7 @@ class AppWidget extends StatelessWidget {
                     TextStyle(fontSize: 15, color: kPrimaryLightColor),
                 displayLarge: TextStyle(
                     fontSize: 17,
-                    color: Colors.black,
+                    color: kPrimaryLightColor,
                     fontWeight: FontWeight.bold),
                 titleSmall: TextStyle(
                     fontSize: 20, letterSpacing: 1.5, color: kPrimaryColor),

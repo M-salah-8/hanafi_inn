@@ -1,45 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hanafi_inn/presentation/core/constants.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 class CustomCard extends HookWidget {
-  const CustomCard({required this.child, Key? key, this.function})
+  const CustomCard({Key? key, required this.name, required this.date})
       : super(key: key);
-  final Function? function;
-  final Widget child;
+  final String date;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
-    final padding = useState(false);
+    final displayMedium = Theme.of(context).textTheme.displayMedium;
+    final displayLarge = Theme.of(context).textTheme.displayLarge;
+    final datePressed = useState(false);
+    Size size = MediaQuery.of(context).size;
     return GestureDetector(
       child: AnimatedContainer(
-          padding: padding.value
-              ? const EdgeInsets.all(20)
-              : const EdgeInsets.all(10),
-          duration: const Duration(milliseconds: 250),
-          decoration: BoxDecoration(
-            boxShadow: const [
-              // BoxShadow(
-              //     color: Color.fromARGB(255, 84, 85, 84),
-              //     offset: Offset(0, 1),
-              //     spreadRadius: 1,
-              //     blurRadius: 15),
+        padding: EdgeInsets.all(size.height * 0.02),
+        duration: const Duration(milliseconds: 250),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+          border: Border.all(width: 3, color: kPrimaryColor),
+          color: kPrimaryColor,
+        ),
+        child: Column(
+          children: [
+            if (datePressed.value) ...[
+              PlayAnimation<double>(
+                tween: Tween(begin: 0.0, end: displayMedium!.fontSize),
+                duration: const Duration(milliseconds: 350),
+                curve: Curves.easeOut,
+                builder: (context, child, value) {
+                  return Text(
+                    date,
+                    style: displayLarge!.copyWith(fontSize: value),
+                    textAlign: TextAlign.center,
+                  );
+                },
+              ),
+              SizedBox(
+                height: size.height * 0.02,
+              )
             ],
-            borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
-            border: Border.all(width: 3, color: kPrimaryColor),
-            color: kPrimaryColor,
-            // gradient: const LinearGradient(
-            //     begin: Alignment.topLeft,
-            //     end: Alignment.bottomRight,
-            //     colors: [
-            //       Color.fromARGB(255, 185, 224, 187),
-            //       Color.fromARGB(255, 248, 248, 248),
-            //       Color.fromARGB(255, 248, 248, 248),
-            //     ])
-          ),
-          child: child),
+            Text(
+              name,
+              style: displayMedium,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
       onTap: () {
-        padding.value = !padding.value;
+        datePressed.value = !datePressed.value;
       },
     );
   }

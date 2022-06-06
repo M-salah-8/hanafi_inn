@@ -15,46 +15,26 @@ class Background extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            const Align(
-                alignment: Alignment(.5, 0.1), child: EmojiAnimation('🎊️')),
-            const Align(
-                alignment: Alignment(0.1, 0.9), child: EmojiAnimation('📅️')),
-            const Align(
-                alignment: Alignment(-0.2, -0.8), child: EmojiAnimation('😴️')),
-            const Align(
-                alignment: Alignment(-0.1, -0.5), child: EmojiAnimation('💅️')),
-            const Align(
-                alignment: Alignment(0.9, 0.3), child: EmojiAnimation('🍉️')),
-            const Align(
-                alignment: Alignment(-0.9, -0.3), child: EmojiAnimation('🎃️')),
-            const Align(
-                alignment: Alignment(0.6, -0.8), child: EmojiAnimation('🌍️')),
-            const Align(
-                alignment: Alignment(-0.8, 0.5), child: EmojiAnimation('🔒️')),
-            const Align(
-                alignment: Alignment(0.9, -0.4), child: EmojiAnimation('🎂️')),
-            const Align(
-                alignment: Alignment(0.1, 0.4), child: EmojiAnimation('🛌️')),
-            const Align(
-                alignment: Alignment(-.5, -0.1), child: EmojiAnimation('🎊️')),
-            const Align(
-                alignment: Alignment(-0.1, -0.9), child: EmojiAnimation('📅️')),
-            const Align(
-                alignment: Alignment(-0.2, 0.8), child: EmojiAnimation('😴️')),
-            const Align(
-                alignment: Alignment(-0.9, 0.9), child: EmojiAnimation('💅️')),
-            const Align(
-                alignment: Alignment(-0.9, 0.3), child: EmojiAnimation('🍉️')),
-            const Align(
-                alignment: Alignment(0.9, 0.9), child: EmojiAnimation('🎃️')),
-            const Align(
-                alignment: Alignment(-0.6, -0.8), child: EmojiAnimation('🌍️')),
-            const Align(
-                alignment: Alignment(-0.8, -0.5), child: EmojiAnimation('🔒️')),
-            const Align(
-                alignment: Alignment(-0.9, -0.4), child: EmojiAnimation('🎂️')),
-            const Align(
-                alignment: Alignment(-0.1, -0.4), child: EmojiAnimation('🛌️')),
+            const EmojiAnimation('🎊️', .5, 0.1),
+            const EmojiAnimation('📅️', 0.1, 0.9),
+            const EmojiAnimation('😴️', -0.2, -0.8),
+            const EmojiAnimation('💅️', -0.1, -0.5),
+            const EmojiAnimation('🍉️', 0.9, 0.3),
+            const EmojiAnimation('🎃️', -0.9, -0.3),
+            const EmojiAnimation('🌍️', 0.6, -0.8),
+            const EmojiAnimation('🔒️', -0.8, 0.5),
+            const EmojiAnimation('🎂️', 0.9, -0.4),
+            const EmojiAnimation('🛌️', 0.1, 0.4),
+            const EmojiAnimation('🎊️', -.5, -0.1),
+            const EmojiAnimation('📅️', -0.1, -0.9),
+            const EmojiAnimation('😴️', -0.2, 0.8),
+            const EmojiAnimation('💅️', -0.9, 0.9),
+            const EmojiAnimation('🍉️', -0.9, 0.3),
+            const EmojiAnimation('🎃️', 0.9, 0.9),
+            const EmojiAnimation('🌍️', -0.6, -0.8),
+            const EmojiAnimation('🔒️', -0.8, -0.5),
+            const EmojiAnimation('🎂️', -0.9, -0.4),
+            const EmojiAnimation('🛌️', -0.1, -0.4),
             child,
           ],
         ),
