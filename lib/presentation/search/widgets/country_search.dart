@@ -22,6 +22,7 @@ class CountrySearch extends SearchDelegate {
       },
       icon: const Icon(Icons.arrow_back));
 
+  // unused
   @override
   Widget buildResults(BuildContext context) {
     return Text(query);
@@ -29,7 +30,7 @@ class CountrySearch extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // only suggestions containing letters from the search appear
+    // only suggest countries containing letters from the search query
     List<CountryPrimitive> results = countryList.where((element) {
       final result = element.name.toLowerCase();
       final input = query.toLowerCase();
@@ -46,7 +47,7 @@ class CountrySearch extends SearchDelegate {
             style: Theme.of(context).textTheme.displaySmall,
           ),
 
-          // change choosen value to be current country
+          // change choosen value to be current country in search page
           onTap: () {
             currentCountry.value = results[index];
             close(context, null);

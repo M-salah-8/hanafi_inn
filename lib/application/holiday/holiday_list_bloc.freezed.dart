@@ -224,7 +224,7 @@ mixin _$HolidayListState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(String failure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -232,7 +232,7 @@ mixin _$HolidayListState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -240,7 +240,7 @@ mixin _$HolidayListState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -331,7 +331,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(String failure) loadFailure,
   }) {
     return initial();
   }
@@ -342,7 +342,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
   }) {
     return initial?.call();
   }
@@ -353,7 +353,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -447,7 +447,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(String failure) loadFailure,
   }) {
     return loading();
   }
@@ -458,7 +458,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
   }) {
     return loading?.call();
   }
@@ -469,7 +469,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -593,7 +593,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(String failure) loadFailure,
   }) {
     return loadSuccess(holidays);
   }
@@ -604,7 +604,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
   }) {
     return loadSuccess?.call(holidays);
   }
@@ -615,7 +615,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -677,6 +677,7 @@ abstract class _$$_LoadFailureCopyWith<$Res> {
   factory _$$_LoadFailureCopyWith(
           _$_LoadFailure value, $Res Function(_$_LoadFailure) then) =
       __$$_LoadFailureCopyWithImpl<$Res>;
+  $Res call({String failure});
 }
 
 /// @nodoc
@@ -689,26 +690,49 @@ class __$$_LoadFailureCopyWithImpl<$Res>
 
   @override
   _$_LoadFailure get _value => super._value as _$_LoadFailure;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_$_LoadFailure(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_LoadFailure implements _LoadFailure {
-  const _$_LoadFailure();
+  const _$_LoadFailure(this.failure);
+
+  @override
+  final String failure;
 
   @override
   String toString() {
-    return 'HolidayListState.loadFailure()';
+    return 'HolidayListState.loadFailure(failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LoadFailure);
+        (other.runtimeType == runtimeType &&
+            other is _$_LoadFailure &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LoadFailureCopyWith<_$_LoadFailure> get copyWith =>
+      __$$_LoadFailureCopyWithImpl<_$_LoadFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -716,9 +740,9 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<HolidayPrimitive> holidays) loadSuccess,
-    required TResult Function() loadFailure,
+    required TResult Function(String failure) loadFailure,
   }) {
-    return loadFailure();
+    return loadFailure(failure);
   }
 
   @override
@@ -727,9 +751,9 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
   }) {
-    return loadFailure?.call();
+    return loadFailure?.call(failure);
   }
 
   @override
@@ -738,11 +762,11 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<HolidayPrimitive> holidays)? loadSuccess,
-    TResult Function()? loadFailure,
+    TResult Function(String failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
-      return loadFailure();
+      return loadFailure(failure);
     }
     return orElse();
   }
@@ -786,5 +810,10 @@ class _$_LoadFailure implements _LoadFailure {
 }
 
 abstract class _LoadFailure implements HolidayListState {
-  const factory _LoadFailure() = _$_LoadFailure;
+  const factory _LoadFailure(final String failure) = _$_LoadFailure;
+
+  String get failure => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_LoadFailureCopyWith<_$_LoadFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }

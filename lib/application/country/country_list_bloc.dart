@@ -17,26 +17,37 @@ class CountryListBloc extends Bloc<CountryListEvent, CountryListState> {
       : super(const CountryListState.initial()) {
     on<CountryListEvent>((event, emit) async {
       final prefs = await SharedPreferences.getInstance();
-      final List<String>? countryListFromPrefs =
-          prefs.getStringList('Country,Code');
-      if (countryListFromPrefs != null) {
-        final countryListConverted = prefToCountry(countryListFromPrefs);
-        emit(CountryListState.loadSuccess(countryListConverted));
-      } else {
-        emit(const CountryListState.loading());
-        final holidaysListorFailure =
-            await _countryRepository.getCountrysList();
-        holidaysListorFailure.fold(
-            (l) =>
-                // TODO failures
-                emit(CountryListState.loadFailure()), (countryListAPI) async {
-          countryToPref(countryListAPI, prefs);
-          final countryList = countryListAPI
-              .map((e) => CountryPrimitive.fromDomain(e))
-              .toList();
-          return emit(CountryListState.loadSuccess(countryList));
-        });
-      }
+      await event.map(getList: (e) async {
+        final List<String>? countryListFromPrefs =
+            prefs.getStringList('Country,Code');
+        final List<String>? currentCountryFromPrefs =
+            prefs.getStringList('currentCountry') ?? ['Sudan', 'SD'];
+        final currentCountry = CountryPrimitive(
+            name: currentCountryFromPrefs![0],
+            code: currentCountryFromPrefs[1]);
+        if (countryListFromPrefs != null) {
+          final countryListConverted = prefToCountry(countryListFromPrefs);
+          emit(CountryListState.loadSuccess(
+              countryListConverted, currentCountry));
+        } else {
+          emit(const CountryListState.loading());
+          final holidaysListorFailure =
+              await _countryRepository.getCountrysList();
+          holidaysListorFailure
+              .fold((l) => emit(CountryListState.loadFailure(l)),
+                  (countryListAPI) async {
+            countryToPref(countryListAPI, prefs);
+            final countryList = countryListAPI
+                .map((e) => CountryPrimitive.fromDomain(e))
+                .toList();
+            return emit(
+                CountryListState.loadSuccess(countryList, currentCountry));
+          });
+        }
+      }, setCurrentCountry: (e) async {
+        await prefs.setStringList(
+            'currentCountry', [e.currentCountry.name, e.currentCountry.code]);
+      });
     });
   }
 

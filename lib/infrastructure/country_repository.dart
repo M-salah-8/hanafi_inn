@@ -22,7 +22,7 @@ class CountryRepository extends ICountryRepository {
           .toList();
       return right(countryList);
     } catch (e) {
-      return left('erorr');
+      return left('No internet connection');
     }
   }
 
@@ -38,7 +38,7 @@ class CountryRepository extends ICountryRepository {
           .toList();
       return right(holidaysList);
     } catch (e) {
-      return left('erorr');
+      return left('No internet connection');
     }
   }
 }

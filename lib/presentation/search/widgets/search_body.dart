@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hanafi_inn/application/holiday/holiday_list_bloc.dart';
-import 'package:hanafi_inn/presentation/core/animation.dart';
-import 'package:hanafi_inn/presentation/core/constants.dart';
-import 'package:hanafi_inn/presentation/core/custom_button.dart';
-import 'package:hanafi_inn/presentation/core/custom_button2.dart';
+import 'package:hanafi_inn/presentation/core/flush_bar.dart';
 import 'package:hanafi_inn/presentation/misc/presentation_classes.dart';
 import 'package:hanafi_inn/presentation/routes/router.gr.dart';
-import 'package:hanafi_inn/presentation/search/widgets/country_search.dart';
+import 'package:hanafi_inn/presentation/search/widgets/country_search_button.dart';
+import 'package:hanafi_inn/presentation/search/widgets/search_button.dart';
 
 class SearchBody extends HookWidget {
   const SearchBody({Key? key, required this.countryList}) : super(key: key);
@@ -31,53 +29,27 @@ class SearchBody extends HookWidget {
               context.router.push(HolidaysRoute(holidays: e.holidays));
             },
             loadFailure: (e) {
-              Container();
+              toggleControlHook.value = false;
+              flushBar(context, e.failure, InstructionOrError.error);
             },
           );
         },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // country search
-              CustomButton(
-                  function: () {
-                    showSearch(
-                        context: context,
-                        delegate: CountrySearch(
-                            countryList: countryList,
-                            currentCountry: currentCountry));
-                  },
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        currentCountry.value.name,
-                        style: titleSmall,
-                      ),
-                      const Icon(
-                        Icons.arrow_downward,
-                        color: kPrimaryColor,
-                      ),
-                    ],
-                  )),
-              SizedBox(
-                height: size.height * 0.1,
-              ),
-              CustomButton2(
-                  function: () {
-                    toggleControlHook.value = !toggleControlHook.value;
-                    BlocProvider.of<HolidayListBloc>(context).add(
-                        HolidayListEvent.getList(currentCountry.value.code));
-                  },
-                  child: SizedBox(
-                      width: size.width * 0.15,
-                      height: size.width * 0.15,
-                      child: SearchAnimation(Icons.search, toggleControlHook))),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // country search
+            CountrySearchButton(
+                countryList: countryList,
+                currentCountry: currentCountry,
+                titleSmall: titleSmall),
+            SizedBox(
+              height: size.height * 0.1,
+            ),
+            SearchButton(
+                toggleControlHook: toggleControlHook,
+                currentCountry: currentCountry,
+                size: size),
+          ],
         ));
   }
 }

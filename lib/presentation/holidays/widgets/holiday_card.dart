@@ -3,8 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hanafi_inn/presentation/core/constants.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-class CustomCard extends HookWidget {
-  const CustomCard({Key? key, required this.name, required this.date})
+class HolidayCard extends HookWidget {
+  const HolidayCard({Key? key, required this.name, required this.date})
       : super(key: key);
   final String date;
   final String name;
@@ -22,7 +22,7 @@ class CustomCard extends HookWidget {
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
           border: Border.all(width: 3, color: kPrimaryColor),
-          color: kPrimaryColor,
+          color: datePressed.value ? kChoosenColor : kPrimaryColor,
         ),
         child: Column(
           children: [

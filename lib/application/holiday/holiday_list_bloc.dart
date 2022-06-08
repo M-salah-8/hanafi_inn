@@ -23,10 +23,8 @@ class HolidayListBloc extends Bloc<HolidayListEvent, HolidayListState> {
         emit(const HolidayListState.loading());
         final holidaysListorFailure =
             await _countryRepository.getHolidays(event.countryCode);
-        holidaysListorFailure.fold(
-            (l) =>
-                // TODO failures
-                emit(HolidayListState.loadFailure()), (holidayListAPI) {
+        holidaysListorFailure.fold((l) => emit(HolidayListState.loadFailure(l)),
+            (holidayListAPI) {
           holidayToPref(
               holidayListAPI, prefs, codeListFromPrefs, event.countryCode);
           final holidaysList = holidayListAPI
